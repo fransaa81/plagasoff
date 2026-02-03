@@ -13,7 +13,7 @@ Cómo probar localmente:
 2. Recargar (Ctrl+F5) para asegurar la versión actual de CSS.
 
 Notas sobre el commit/push:
-- Se inicializó el repositorio local y se subieron los archivos a `https://github.com/fransaa81/lasplaguitasoff.git`.
+- El repositorio local fue subido al remoto `https://github.com/fransaa81/laspagluistasoff2`.
 - En Windows Git puede mostrar advertencias LF/CRLF; si lo deseas puedo añadir un archivo `.gitattributes` para normalizarlas.
 
 Contacto del sitio:
