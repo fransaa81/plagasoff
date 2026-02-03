@@ -8463,4 +8463,33 @@ h2.text-left.mt-50 {
 	.fixed-wa .fixed-wa-buttons a:hover{ transform: translateY(-2px) !important; }
 }
 
+/* Mobile-specific fixes for iPhone/Android */
+@media (max-width: 480px) {
+	/* Ensure touch targets meet accessibility (about 44-48px) */
+	.fixed-wa .wa-btn, .fixed-wa .call-btn {
+		width: 56px !important;
+		height: 56px !important;
+		padding: 8px !important;
+	}
+	.fixed-wa .wa-btn img { width: 48px !important; }
+	.fixed-wa .call-btn img { width: 40px !important; }
+
+	/* Move floating group a bit inward and up to avoid system UI overlap */
+	.fixed-wa { right: 10px !important; bottom: 18px !important; }
+	.fixed-wa .fixed-wa-buttons { transform: translateY(20px) !important; }
+
+	/* Reset any desktop inline negative margins so contact items align on small screens */
+	a.contact-link.phone-link[href^="tel:+5491151370538"] { margin-left: 0 !important; }
+
+	/* Ensure contact text and icons scale down nicely */
+	.contact-text { font-size: 16px !important; }
+	.phone-icon { width: 36px !important; margin-left: 0 !important; }
+}
+
+/* Slightly larger mobile breakpoint for small tablets */
+@media (min-width: 481px) and (max-width: 767px) {
+	.fixed-wa { right: 12px !important; bottom: 30px !important; }
+	.fixed-wa .fixed-wa-buttons { transform: translateY(30px) !important; }
+}
+
 
