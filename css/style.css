@@ -129,8 +129,8 @@ img[src="images/Inspección de roedor en jaula.png"] {
 }
 .contact-item {
 	display: flex;
-	align-items: center;
-	margin-bottom: 12px;
+ 	align-items: center;
+ 	margin-bottom: 6px; /* reducido para achicar espacios entre bloques */
 }
 .contact-link {
 	display: flex;
@@ -184,6 +184,34 @@ img[src="images/Inspección de roedor en jaula.png"] {
 /* Mueve solo el icono del teléfono a la derecha */
 .phone-icon {
 	margin-left: 7px;
+}
+/* Clase para mover solo el icono de WhatsApp 2px a la izquierda sin afectar el texto */
+.whatsapp-icon {
+	display: inline-block;
+	position: relative; /* desplaza sin afectar el flujo */
+	left: -2px; /* 2px a la izquierda */
+}
+/* Clase para aumentar visualmente solo el icono sin cambiar el flujo del texto
+   Mantiene el ancho de layout (45px) pero escala la imagen hacia la izquierda
+   de forma que el número no cambie de posición. */
+.phone-icon.phone-icon--bigger {
+	width: 45px; /* mantiene espacio de layout */
+	display: inline-block;
+	/* Escala visual para aumentar 17px (45 -> 62) sin cambiar el flujo del documento */
+	transform: scale(1.37778); /* 62/45 ≈ 1.37778 */
+	transform-origin: right center; /* escalar hacia la izquierda (manteniendo el borde derecho), no empuja el número */
+	position: relative; /* permite ajustes visuales sin afectar el flujo */
+	left: 5px; /* desplaza solo el icono 5px a la derecha sin mover el número */
+}
+
+/* Aumenta solo el icono dentro de .call-btn (fixed-wa) en +30px (45 -> 75) */
+.fixed-wa .call-btn .phone-icon--big25 {
+	width: 73px !important; /* reducido 2px */
+	height: auto;
+	display: inline-block;
+	transform: none !important;
+	position: relative; /* permite desplazar solo este icono */
+	left: -2px; /* desplaza 2px a la izquierda solo esta imagen */
 }
 /* Mover solo el enlace de teléfono específico 7px a la derecha (solo este bloque) */
 a.contact-link.phone-link[href^="tel:+5491151370538"] {
