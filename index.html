@@ -73,6 +73,37 @@
     align-items: center !important;
     transform: translateY(-2px) !important;
   }
+
+  /* Stronger overrides for contact items (phone / whatsapp / instagram) */
+  .contact-item .contact-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 10px !important;
+    margin-left: 0 !important;
+    padding: 0 !important;
+  }
+  .contact-item .contact-link img,
+  .contact-item .contact-link .phone-icon,
+  .contact-item .contact-link .whatsapp-icon {
+    margin: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+  }
+  .contact-item .contact-text {
+    margin-left: 0 !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+    transform: none !important;
+    letter-spacing: normal !important;
+  }
+  .contact-item .whatsapp-link .contact-text {
+    margin-left: 0 !important;
+    letter-spacing: -0.5px !important;
+  }
+
 }
 </style>
 <body>
