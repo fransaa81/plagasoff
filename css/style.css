@@ -228,19 +228,172 @@ img { max-width: 100%; height: auto; }
 
 @media (max-width: 767px) {
 	/* Reset inline negative offsets used for desktop so items stack cleanly on small screens */
-	.contact-link { margin-left: 0 !important; }
+	.contact-link { margin-left: 0 !important; padding: 8px 6px !important; }
+	.contact-link.phone-link, .contact-link.whatsapp-link { margin-left: 0 !important; }
 
-	/* Reduce icon size and margins for mobile */
-	.phone-icon { margin-left: 8px !important; width: 40px !important; }
+	/* Use flex layout consistently so icons and text align across rows */
+	.contact-link { display: flex; align-items: center; }
+	.contact-link img { display: block; height: auto; }
 
-	/* Ensure text is legible but not oversized */
-	.contact-text { font-size: 18px !important; margin-left: 8px !important; }
+	/* Normalize icon sizing & neutralize transforms/offsets on mobile
+	   -- keep phone icon sizes/layout stable and DO NOT scale them here */
+	/* Aumentar visualmente SOLO el icono de teléfono en la lista móvil (+15px)
+	   Layout usa 40px, así que escalamos a 55px visuales: 55/40 = 1.375 */
+	.contact-link .phone-icon,
+	.contact-link .phone-icon.phone-icon--bigger {
+		transform: scale(1.375) !important;
+		transform-origin: right center !important; /* expandir hacia la izquierda, no empuja el texto */
+		left: 0 !important;
+		margin-left: 8px !important;
+		width: 40px !important; /* mantener ancho de layout para que el número no se mueva */
+		max-width: 40px !important;
+		height: auto !important;
+	}
 
-	/* Tighter spacing between contact items on mobile */
+	/* El icono del botón fijo (.fixed-wa .call-btn) no debe escalar */
+	.fixed-wa .call-btn .phone-icon--big25 {
+		transform: none !important;
+		left: -2px; /* conservar el ajuste previo para el botón */
+		width: 73px !important;
+		height: auto;
+		display: inline-block;
+	}
+
+	/* En cambio, aumentar SOLO el icono de WhatsApp visualmente */
+	.contact-link .whatsapp-icon,
+	.contact-link img.whatsapp-icon {
+		/* keep layout width stable but visually enlarge only this image by ~30px total
+		   Layout uses 48px so we scale to ~78px visually: 78/48 = 1.625 */
+		transform: scale(1.625) !important;
+		transform-origin: right center !important; /* expand away from the text */
+		left: 0 !important;
+		margin-left: 8px !important;
+		width: 48px !important; /* layout width unchanged so text doesn't move */
+		max-width: 48px !important;
+		height: auto !important;
+	}
+
+	/* Mover solo la imagen de WhatsApp 2px a la derecha (solo móvil) */
+	.contact-link .whatsapp-icon,
+	.contact-link img.whatsapp-icon {
+		left: 4px !important; /* desplaza 4px a la derecha sin afectar el texto */
+		position: relative !important;
+	}
+
+	/* Ensure text spacing is consistent and legible on small screens */
+	.contact-text, .contact-text.phone-text {
+		margin-left: 10px !important;
+		font-size: 18px !important;
+	}
+
+	/* Mover solo el enlace de teléfono 40px a la derecha en móvil (inline original -20px) */
+	/* Calculado: -20px + 40px = 20px */
+	a.contact-link.phone-link[href^="tel:+5491151370538"] {
+		margin-left: 220px !important; /* desplazado 200px adicional respecto al ajuste previo */
+	}
+
+	/* Mover solo el enlace de WhatsApp 240px a la derecha en móvil (inline original -20px)
+	   Calculado: -20px + 240px = 220px */
+	a.contact-link.whatsapp-link[href^="https://web.whatsapp.com/send?phone=5491151370538"] {
+		margin-left: 220px !important;
+	}
+
+	/* Mover solo el enlace de Instagram 240px a la derecha en móvil */
+	.contact-link.instagram-link {
+		transform: none !important;
+		margin-left: 240px !important;
+	}
+
+	/* Ajuste específico: mover solo el enlace de Instagram 10px a la izquierda (móvil) */
+	a.contact-link.instagram-link[href^="https://instagram.com/plagasoff"] {
+		transform: translateX(-22px) !important;
+	}
+
+/* Mover solo el texto del número 6px a la izquierda sin mover el icono */
+a.contact-link.phone-link[href^="tel:+5491151370538"] .contact-text.phone-text {
+	position: relative !important;
+	left: -6px !important;
+	/* no tocar margen ni padding para no afectar otros elementos */
+}
+
+/* Evitar la "lámina" blanca de los botones en móviles (ocultar pseudo-elementos :after) */
+@media (max-width: 767px) {
+	.btn-dark:after,
+	.btn-dark-out:after,
+	.btn-color:after,
+	.btn-color-out:after,
+	.btn-custom:after {
+		display: none !important;
+		background-image: none !important;
+		width: 0 !important;
+		height: 0 !important;
+	}
+}
+
+/* Añadir 20px de separación entre hero buttons y el primer contact-item (sólo móvil) */
+@media (max-width: 767px) {
+	/* Selecciona el primer .contact-item dentro de #inicio y añade espacio superior */
+	#inicio .contact-item:first-of-type {
+		margin-top: 20px !important;
+	}
+}
+
+/* Mover solo el texto del número dentro del enlace de WhatsApp 11px a la izquierda */
+a.contact-link.whatsapp-link[href^="https://web.whatsapp.com/send?phone=5491151370538"] .contact-text {
+	position: relative !important;
+	left: -13px !important;
+	/* mantiene margen/padding existentes para no afectar el icono */
+}
+
+/* Ocultar el spacer <div style="height: 95px;"> sólo en la versión móvil */
+@media (max-width: 767px) {
+	div[style*="height: 95px"] {
+		display: none !important;
+		height: 0 !important;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+}
+
+/* Tighter spacing between contact items on mobile */
 	.contact-item { margin-bottom: 8px !important; }
+}
 
-	/* Increase touch target for links */
-	.contact-link { padding: 8px 6px !important; }
+/* Fix WhatsApp hero button cut and alignment on mobile only */
+@media (max-width: 767px) {
+	/* Ensure the container and inner button are inline and visible */
+	#inicio .title .btn {
+		display: inline-block !important;
+		vertical-align: middle !important;
+		margin-left: 0 !important;
+		overflow: visible !important;
+	}
+
+	/* Target the specific hero WhatsApp anchor so other buttons stay untouched */
+	#inicio .title .btn > a.btn-block.btn-dark-out[href^="https://web.whatsapp.com/send?phone=5491151370538"] {
+		display: inline-flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		text-align: center !important;
+		width: auto !important;
+		padding: 10px 16px !important;
+		line-height: 1.2 !important;
+		white-space: nowrap !important;
+		overflow: visible !important;
+		box-sizing: border-box !important;
+		transform: translateY(-13px) !important; /* subir 13px en móvil (ahora total) */
+	}
+
+/* Centrar texto e icono del botón 'Nuestros Planes' (selector específico) */
+#inicio .title .btn > a.btn-info.btn-shadow.btn-round {
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	text-align: center !important;
+	vertical-align: middle !important;
+	gap: 8px !important;
+	white-space: nowrap !important;
+}
 }
 
 @media (max-width: 480px) {

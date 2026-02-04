@@ -1,0 +1,43 @@
+/* Mobile-only overrides: center button text without affecting desktop */
+@media (max-width: 767px) {
+  .title .btn,
+  .btn,
+  .btn-block,
+  .btn.btn-dark,
+  .btn.btn-info,
+  .btn.btn-warning,
+  .btn.btn-light,
+  .btn.btn-color,
+  .btn.btn-dark-out,
+  .btn.btn-color-out,
+  .btn.btn-round {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+  .btn > i,
+  .btn > img,
+  .btn .hc-arrow-round-forward {
+    margin: 0 !important;
+    position: static !important;
+  }
+}
+
+/* Alineación específica para el botón "Nuestros Planes" en móvil */
+@media (max-width: 767px) {
+  a.btn.btn-info.btn-shadow.btn-round[href="#planes"] {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 16px 14px 8px 14px !important; /* extra top padding to move text down */
+    line-height: 1 !important;
+    min-height: 46px !important;
+  }
+  a.btn.btn-info.btn-shadow.btn-round[href="#planes"] .hc-arrow-round-forward {
+    margin-left: 8px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    transform: translateY(-2px) !important; /* raise arrow above baseline for better centering */
+  }
+}
